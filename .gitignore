@@ -1,0 +1,9 @@
+# Ignore .env file containing sensitive data
+.env
+
+# Ignore serviceAccount.json if perlu
+serviceAccount.json
+
+# Node modules
+node_modules/
+.vercel
