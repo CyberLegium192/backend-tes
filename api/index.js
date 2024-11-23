@@ -1,8 +1,14 @@
 import express from "express";
-import {getNewsList} from '../src/jkt48/news/news.js'
-import {getScheduleList} from '../src/jkt48/schedule/schedule.js'
+import { getNewsList } from '../src/jkt48/news/news.js';
+import { getScheduleList } from '../src/jkt48/schedule/schedule.js';
+
 const app = express();
+
+// Tambahkan middleware default untuk mendukung JSON parsing
+app.use(express.json());
+
 app.get("/", (req, res) => res.send("Express on Vercel"));
+
 app.get('/news', async (req, res) => {
     try {
         const newData = await getNewsList();
@@ -20,7 +26,6 @@ app.get('/news', async (req, res) => {
     }
 });
 
-// Endpoint untuk schedule
 app.get('/schedule', async (req, res) => {
     try {
         const scheduleData = await getScheduleList();
@@ -38,5 +43,5 @@ app.get('/schedule', async (req, res) => {
     }
 });
 
-// Ekspor default
+// Ekspor sebagai handler untuk Vercel
 export default app;
